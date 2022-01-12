@@ -1,7 +1,18 @@
 require('dotenv').config()
-
 const express = require('express')
+const sequelize = require('./db')
 const app = express()
+
+const connectToDB = async () => {
+  try {
+    await sequelize.authenticate()
+    await sequelize.sync()
+    app.listen(() => console.log('Database connected'))
+  } catch (e) {
+    console.log(e)
+  }
+}
+connectToDB()
 
 
 
