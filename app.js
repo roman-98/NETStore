@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const sequelize = require('./db')
 const models = require('./models/models')
+const cors = require('cors')
 const app = express()
 
 const connectToDB = async () => {
@@ -15,6 +16,14 @@ const connectToDB = async () => {
 }
 connectToDB()
 
+app.use(cors())
+app.use(express.json())
+
+/*
+app.get('/', (req, res) => {
+  res.status(200).json({message: 'OK'})
+})
+*/
 
 
 module.exports = app
